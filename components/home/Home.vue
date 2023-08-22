@@ -7,7 +7,7 @@
           @update:modelValue="onChangeCategory"
           class="mr-4 w-5/12"
           density="compact"
-          label="Autocomplete"
+          label="Categories"
           item-title="title"
           :items="categories"
           variant="outlined"
@@ -16,7 +16,7 @@
           v-model="searchName"
           class="w-7/12"
           density="compact"
-          label="Label"
+          label="Search by name"
           variant="outlined"
         ></v-text-field>
       </div>
@@ -48,6 +48,9 @@
               @click="onFavorite(item)"
             ></v-icon>
           </div>
+        </div>
+        <div v-if="!filtredItems.length" class="text-black mt-4 text-center">
+          Informations not found
         </div>
       </div>
     </div>
@@ -159,10 +162,8 @@ export default {
     };
 
     const onClickItem = async (event, item) => {
-      console.log(item);
       const [response] = (await getItemDetails(item.strDrink)).drinks;
       itemSelect.value = response;
-      console.log(itemSelect.value);
       showModal.value = true;
     };
 

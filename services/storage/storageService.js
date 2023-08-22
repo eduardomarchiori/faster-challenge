@@ -7,7 +7,6 @@ export const setItemOnStorage = (item) => {
 
   const validList = [...listWithoutItemAlreadyCreated, item];
 
-  console.log(validList);
   return localStorage.setItem("favoriteItems", JSON.stringify(validList));
 };
 

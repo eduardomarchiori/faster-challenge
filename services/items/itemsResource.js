@@ -1,5 +1,4 @@
 import { api } from "../api/api";
-console.log(api.defaults);
 
 const BASE = "/v1/1";
 

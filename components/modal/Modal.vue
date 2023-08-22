@@ -9,7 +9,11 @@
         ></v-toolbar>
         <div class="flex flex-col items-center justify-center p-6">
           <img :src="item.strDrinkThumb" :alt="item.strDrink" width="200" />
-          <p class="mt-8">{{ item.strInstructions }}</p>
+          <p class="mt-8">
+            {{
+              item.strInstructions || "There is no instructions to this item"
+            }}
+          </p>
         </div>
         <v-card-actions class="justify-end">
           <v-btn variant="text" @click="close(isActive)">Close</v-btn>

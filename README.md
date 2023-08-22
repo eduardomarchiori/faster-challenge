@@ -1,63 +1,40 @@
-# Nuxt 3 Minimal Starter
+# My Drinks
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Projeto desenvolvido com o objetivo de criar uma listagem de bebidas com informações de seu preparo para um processo seletivo.
 
 ## Setup
 
-Make sure to install the dependencies:
+- Clone o projeto
+- Entre no repositório
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
+  cd/faster-challenge
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+- Instale as dependencias
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
+  yarn
 ```
 
-## Production
-
-Build the application for production:
+ou
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
+  yarn install
 ```
 
-Locally preview production build:
+- Inicie a aplicação
+  - Opções de inicialização
+  ```bash
+    yarn dev #inicializa em modo de desenvolvimento
+  ```
+  ```bash
+    yarn build && yarn preview #inicializa em modo de produção
+  ```
 
-```bash
-# npm
-npm run preview
+## Funcionalidades
 
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- Listagem de bebidas
+- Filtro por categoria selecionada
+- Filtro por nomes que contem letras digitadas
+- Marcar bebidas como favoritas
