@@ -29,7 +29,7 @@ ou
     yarn dev #inicializa em modo de desenvolvimento
   ```
   ```bash
-    yarn build && yarn preview #inicializa em modo de produção
+    yarn preview #inicializa em modo de produção
   ```
 
 ## Funcionalidades

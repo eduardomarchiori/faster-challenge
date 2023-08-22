@@ -1,11 +1,11 @@
 <template>
-  <div class="w-8/12">
+  <div class="w-11/12 md:w-8/12">
     <div class="bg-white rounded-lg flex justify-between px-5 pt-5 mb-4">
-      <div class="w-5/12 flex">
+      <div class="w-full md:w-5/12 flex flex-col md:flex-row">
         <v-autocomplete
           return-object
           @update:modelValue="onChangeCategory"
-          class="mr-4 w-5/12"
+          class="mr-4 w-full md:w-5/12"
           density="compact"
           label="Categories"
           item-title="title"
@@ -14,7 +14,7 @@
         ></v-autocomplete>
         <v-text-field
           v-model="searchName"
-          class="w-7/12"
+          class="w-full md:w-7/12"
           density="compact"
           label="Search by name"
           variant="outlined"
@@ -34,12 +34,12 @@
           class="flex gap-4 t-col py-2 px-4"
         >
           <div
-            class="cursor-pointer"
+            class="cursor-pointer truncate"
             @click="(event) => onClickItem(event, item)"
           >
             {{ item.strDrink }}
           </div>
-          <div class="action flex justify-center">
+          <div class="action flex justify-center hidden fold:flex">
             <v-icon
               class="mr-6 cursor-pointer"
               size="large"
@@ -83,6 +83,10 @@ export default {
     Toaster,
   },
   async setup() {
+    useHead({
+      title: "My Drinks",
+    });
+
     const items = ref([]);
     const categories = ref([]);
     const category = ref(null);
