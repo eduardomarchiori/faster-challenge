@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full p-4">
+  <header class="w-full p-4 bg-cprimary">
     <div class="flex flex-col md:flex-row justify-center items-center w-full">
       <div class="flex w-10/12 md:w-8/12 justify-between items-center md:mb-0">
         <div class="text-lg text-white">
@@ -20,13 +20,3 @@
     </div>
   </header>
 </template>
-
-<script>
-export default {};
-</script>
-
-<style scoped>
-header {
-  background-color: #131843 !important;
-}
-</style>

@@ -28,29 +28,37 @@
           <div>Item</div>
           <div class="action">Action</div>
         </div>
-        <div
-          v-for="item in filtredItems"
-          :key="item.idDrink"
-          class="flex gap-4 t-col py-2 px-4"
-        >
+        <template v-if="!loading">
           <div
-            class="cursor-pointer truncate"
-            @click="(event) => onClickItem(event, item)"
+            v-for="item in filtredItems"
+            :key="item.idDrink"
+            class="flex gap-4 t-col py-2 px-4"
           >
-            {{ item.strDrink }}
+            <div
+              class="cursor-pointer truncate"
+              @click="(event) => onClickItem(event, item)"
+            >
+              {{ item.strDrink }}
+            </div>
+            <div class="action flex justify-center hidden fold:flex">
+              <v-icon
+                class="mr-6 cursor-pointer"
+                size="large"
+                color="yellow-darken-2"
+                :icon="item.isFavorite ? 'mdi-star' : 'mdi-star-outline'"
+                @click="onFavorite(item)"
+              ></v-icon>
+            </div>
           </div>
-          <div class="action flex justify-center hidden fold:flex">
-            <v-icon
-              class="mr-6 cursor-pointer"
-              size="large"
-              color="yellow-darken-2"
-              :icon="item.isFavorite ? 'mdi-star' : 'mdi-star-outline'"
-              @click="onFavorite(item)"
-            ></v-icon>
-          </div>
-        </div>
-        <div v-if="!filtredItems.length" class="text-black mt-4 text-center">
+        </template>
+        <div
+          v-if="!filtredItems.length && !loading"
+          class="text-black mt-4 text-center"
+        >
           Informations not found
+        </div>
+        <div v-if="loading" class="flex justify-center items-center mt-4">
+          <Spin />
         </div>
       </div>
     </div>
@@ -75,12 +83,14 @@ import {
 } from "../../services/storage/storageService";
 import Modal from "../modal/Modal.vue";
 import Toaster from "../toaster/Toaster.vue";
+import Spin from "../spin/Spin.vue";
 import { ref, computed } from "vue";
 
 export default {
   components: {
     Modal,
     Toaster,
+    Spin,
   },
   async setup() {
     useHead({
@@ -92,6 +102,7 @@ export default {
     const category = ref(null);
     const searchName = ref("");
     const showModal = ref(false);
+    const loading = ref(false);
     const itemSelect = ref({});
     const toaster = ref(false);
     const errorText = ref("");
@@ -113,6 +124,8 @@ export default {
     };
 
     const load = async () => {
+      loading.value = true;
+
       try {
         categories.value = (await getCategories()).drinks.map(
           ({ strCategory }) => ({ title: strCategory, value: strCategory })
@@ -123,24 +136,29 @@ export default {
         items.value = (
           await getItemsByCategory(category.value.value)
         ).drinks.map(getFavoriteItems);
+        loading.value = false;
       } catch (error) {
         toaster.value = true;
         errorText.value = error.message;
+        loading.value = false;
       }
     };
 
     load();
 
     const onChangeCategory = async (item) => {
+      loading.value = true;
       category.value = item;
       try {
         items.value = (await getItemsByCategory(item.value)).drinks.map(
           getFavoriteItems
         );
         searchName.value = "";
+        loading.value = false;
       } catch (error) {
         toaster.value = true;
         errorText.value = error.message;
+        loading.value = false;
       }
     };
 
@@ -184,6 +202,7 @@ export default {
       itemSelect,
       toaster,
       errorText,
+      loading,
     };
   },
 };
