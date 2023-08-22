@@ -38,3 +38,11 @@ ou
 - Filtro por categoria selecionada
 - Filtro por nomes que contem letras digitadas
 - Marcar bebidas como favoritas
+
+## Decisões técnicas
+
+- Utilizar **Nuxt3** com **Vue3** para aproveitar funcionaliades recentes e se manter atualizado com a ferramenta;
+- Utilizar **Tailwind CSS** para facilitar o desenvolvimento do estilio e responsividaade da aplicação;
+- Utilizar **Vuetify 3** para utilizar componentes de um Design System já pronto acelerando o desenvolvimento;
+- Utilizar **local storage** para salvar status de item favoritado para evitar criar aplicação back-end e ganhar tempo;
+- Componetizar o máximo possível para evitar código redundante e criar escalabilidade com reapoveitamento de componentes.
