@@ -8,7 +8,7 @@ Projeto desenvolvido com o objetivo de criar uma listagem de bebidas com informa
 - Entre no repositório
 
 ```bash
-  cd/faster-challenge
+  cd faster-challenge
 ```
 
 - Instale as dependencias
