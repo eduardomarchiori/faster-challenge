@@ -90,7 +90,6 @@ describe("Home", () => {
   it("should get categories on load", async () => {
     const wrapper = await mountComponent();
     await flushPromises();
-    console.log(wrapper.html(), "bla");
 
     expect(getCategories).toHaveBeenCalledTimes(1);
   });
@@ -98,7 +97,6 @@ describe("Home", () => {
   it("should get item by category on load", async () => {
     const wrapper = await mountComponent();
     await flushPromises();
-    console.log(wrapper.html(), "bla");
 
     expect(getItemsByCategory).toHaveBeenCalledTimes(1);
     expect(getItemsByCategory).toHaveBeenCalledWith("Vodka");
@@ -144,5 +142,30 @@ describe("Home", () => {
 
     expect(getItemDetails).toHaveBeenCalledTimes(1);
     expect(getItemDetails).toHaveBeenCalledWith(itemsByCategory[0].strDrink);
+  });
+
+  it("should open modal when user clicks some item", async () => {
+    const itemsDetails = itemsByCategory.map((item) => ({
+      ...item,
+      strDrinkThumb: "www.google.com",
+    }));
+    getItemDetails.mockResolvedValue({
+      drinks: itemsDetails,
+    });
+    const wrapper = await mountComponent();
+    await flushPromises();
+    const table = wrapper.findComponent({ name: "Table" });
+    const modal = wrapper.findComponent({ name: "Modal" });
+    expect(modal.props("isShow")).toBe(false);
+
+    table.vm.$emit("item-clicked", itemsByCategory[0]);
+    await flushPromises();
+
+    expect(modal.isVisible()).toBe(true);
+    expect(modal.props("isShow")).toBe(true);
+    expect(modal.props("item")).toEqual({
+      ...itemsByCategory[0],
+      strDrinkThumb: "www.google.com",
+    });
   });
 });
