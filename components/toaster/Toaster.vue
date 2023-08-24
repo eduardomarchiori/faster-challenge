@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  name: "Toaster",
   props: {
     errorText: String,
     modelValue: Boolean,
@@ -24,5 +25,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

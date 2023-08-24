@@ -18,5 +18,7 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Spin",
+};
 </script>

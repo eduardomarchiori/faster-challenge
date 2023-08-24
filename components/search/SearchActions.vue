@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  name: "SearchActions",
   props: {
     modelValue: Object,
     name: String,

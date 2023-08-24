@@ -27,6 +27,7 @@
 import { ref, watch } from "vue";
 
 export default {
+  name: "Modal",
   props: {
     isShow: Boolean,
     item: Object,

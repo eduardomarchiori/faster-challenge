@@ -6,46 +6,13 @@
       @update:modelValue="onChangeCategory"
     />
 
-    <div class="bg-white rounded-lg p-4">
-      <div class="w-full relative">
-        <div class="flex bg-gray-200 gap-4 t-row py-2 px-4 rounded-lg">
-          <div>Item</div>
-          <div class="action">Action</div>
-        </div>
-        <template v-if="!loading">
-          <div
-            v-for="item in filtredItems"
-            :key="item.idDrink"
-            class="flex gap-4 t-col py-2 px-4"
-          >
-            <div
-              class="cursor-pointer truncate"
-              @click="(event) => onClickItem(event, item)"
-            >
-              {{ item.strDrink }}
-            </div>
-            <div class="action flex justify-center hidden fold:flex">
-              <v-icon
-                class="mr-6 cursor-pointer"
-                size="large"
-                color="yellow-darken-2"
-                :icon="item.isFavorite ? 'mdi-star' : 'mdi-star-outline'"
-                @click="onFavorite(item)"
-              ></v-icon>
-            </div>
-          </div>
-        </template>
-        <div
-          v-if="!filtredItems.length && !loading"
-          class="text-black mt-4 text-center"
-        >
-          Informations not found
-        </div>
-        <div v-if="loading" class="flex justify-center items-center mt-4">
-          <Spin />
-        </div>
-      </div>
-    </div>
+    <ItemsTable
+      :loading="loading"
+      :items="filtredItems"
+      @favorited="(item) => onFavorite(item)"
+      @item-clicked="(event) => onClickItem(event, item)"
+    />
+
     <Modal
       :item="itemSelect"
       @show="($event) => (showModal = $event)"
@@ -67,16 +34,16 @@ import {
 } from "../../services/storage/storageService";
 import Modal from "../modal/Modal.vue";
 import Toaster from "../toaster/Toaster.vue";
-import Spin from "../spin/Spin.vue";
 import SearchActions from "../search/SearchActions.vue";
+import ItemsTable from "../table/Table.vue";
 import { ref, computed } from "vue";
 
 export default {
   components: {
     Modal,
     Toaster,
-    Spin,
     SearchActions,
+    ItemsTable,
   },
   async setup() {
     useHead({
@@ -193,26 +160,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.t-row > div {
-  min-width: 200px;
-  font-weight: bold;
-}
-
-.t-row > .action {
-  min-width: 70px;
-  position: absolute;
-  right: 0;
-}
-
-.t-col > div {
-  min-width: 200px;
-}
-
-.t-col > .action {
-  min-width: 70px;
-  position: absolute;
-  right: 0;
-}
-</style>
