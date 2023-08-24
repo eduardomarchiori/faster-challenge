@@ -43,6 +43,10 @@ ou
   yarn test
   ```
 
+  ```bash
+  yarn test:coverage #with coverage
+  ```
+
 ## Funcionalidades
 
 - Listagem de bebidas

@@ -1,6 +1,8 @@
 <template>
   <main class="w-full bg-gray-100 flex justify-center items-center py-12">
-    <Home />
+    <Suspense>
+      <Home />
+    </Suspense>
   </main>
 </template>
 

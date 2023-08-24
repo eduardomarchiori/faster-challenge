@@ -10,7 +10,7 @@
       :loading="loading"
       :items="filtredItems"
       @favorited="(item) => onFavorite(item)"
-      @item-clicked="(event) => onClickItem(event, item)"
+      @item-clicked="(event) => onClickItem(event)"
     />
 
     <Modal
@@ -46,9 +46,9 @@ export default {
     ItemsTable,
   },
   async setup() {
-    useHead({
-      title: "My Drinks",
-    });
+    // useHead({
+    //   title: "My Drinks",
+    // });
 
     const items = ref([]);
     const categories = ref([]);
@@ -136,7 +136,7 @@ export default {
       });
     };
 
-    const onClickItem = async (event, item) => {
+    const onClickItem = async (item) => {
       const [response] = (await getItemDetails(item.strDrink)).drinks;
       itemSelect.value = response;
       showModal.value = true;

@@ -65,7 +65,7 @@ export default {
       emit("favorited", item);
     };
 
-    const onClickItem = (item) => {
+    const onClickItem = (event, item) => {
       emit("item-clicked", item);
     };
 
