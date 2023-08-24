@@ -1,26 +1,10 @@
 <template>
   <div class="w-11/12 md:w-8/12">
-    <div class="bg-white rounded-lg flex justify-between px-5 pt-5 mb-4">
-      <div class="w-full md:w-5/12 flex flex-col md:flex-row">
-        <v-autocomplete
-          return-object
-          @update:modelValue="onChangeCategory"
-          class="mr-4 w-full md:w-5/12"
-          density="compact"
-          label="Categories"
-          item-title="title"
-          :items="categories"
-          variant="outlined"
-        ></v-autocomplete>
-        <v-text-field
-          v-model="searchName"
-          class="w-full md:w-7/12"
-          density="compact"
-          label="Search by name"
-          variant="outlined"
-        ></v-text-field>
-      </div>
-    </div>
+    <SearchActions
+      :categories="categories"
+      v-model:name="searchName"
+      @update:modelValue="onChangeCategory"
+    />
 
     <div class="bg-white rounded-lg p-4">
       <div class="w-full relative">
@@ -84,6 +68,7 @@ import {
 import Modal from "../modal/Modal.vue";
 import Toaster from "../toaster/Toaster.vue";
 import Spin from "../spin/Spin.vue";
+import SearchActions from "../search/SearchActions.vue";
 import { ref, computed } from "vue";
 
 export default {
@@ -91,6 +76,7 @@ export default {
     Modal,
     Toaster,
     Spin,
+    SearchActions,
   },
   async setup() {
     useHead({

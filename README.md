@@ -24,12 +24,23 @@ ou
 ```
 
 - Inicie a aplicação
+
   - Opções de inicialização
+
   ```bash
     yarn dev #inicializa em modo de desenvolvimento
   ```
+
   ```bash
     yarn preview #inicializa em modo de produção
+  ```
+
+## Testes
+
+- Testes unitários
+
+  ```bash
+  yarn test
   ```
 
 ## Funcionalidades
